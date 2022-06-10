@@ -3,10 +3,8 @@ package io.deeplay.internship.java.algorithm;
 import io.deeplay.internship.java.data.Coordinate;
 import io.deeplay.internship.java.data.Graph;
 import io.deeplay.internship.java.data.Vertex;
-import io.deeplay.internship.java.error.SolveException;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 public class AStarAlgorithm implements Algorithm {
     public <T extends Coordinate<T>, V extends Vertex<T, V>> List<T> solve(

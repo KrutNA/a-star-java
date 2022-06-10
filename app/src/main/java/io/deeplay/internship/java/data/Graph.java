@@ -1,7 +1,5 @@
 package io.deeplay.internship.java.data;
 
-import io.deeplay.internship.java.error.CoordinateException;
-
 import java.util.List;
 import java.util.Objects;
 

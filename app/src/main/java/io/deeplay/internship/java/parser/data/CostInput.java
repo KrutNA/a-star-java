@@ -4,5 +4,5 @@ import java.util.Map;
 
 public record CostInput (
         Map<String, Map<Character, Integer>> data
-        ) {
+) {
 }

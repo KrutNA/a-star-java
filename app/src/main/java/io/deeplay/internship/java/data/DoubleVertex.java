@@ -1,7 +1,5 @@
 package io.deeplay.internship.java.data;
 
-import java.util.List;
-
 public class DoubleVertex<T extends Coordinate<T>> implements Vertex<T, DoubleVertex<T>> {
     private final double cost;
     private final T coordinate;
