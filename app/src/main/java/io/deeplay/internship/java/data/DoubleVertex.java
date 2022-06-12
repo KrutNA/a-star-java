@@ -1,10 +1,10 @@
 package io.deeplay.internship.java.data;
 
-public class DoubleVertex<T extends Coordinate<T>> implements Vertex<T, DoubleVertex<T>> {
+public class DoubleVertex<C extends Coordinate<C>> implements Vertex<C, DoubleVertex<C>> {
     private final double cost;
-    private final T coordinate;
+    private final C coordinate;
 
-    public DoubleVertex(double cost, T coordinate) {
+    public DoubleVertex(double cost, C coordinate) {
         this.cost = cost;
         this.coordinate = coordinate;
     }
@@ -12,10 +12,10 @@ public class DoubleVertex<T extends Coordinate<T>> implements Vertex<T, DoubleVe
     @Override
     public Double getCost() { return this.cost; }
 
-    public T getCoordinate() { return this.coordinate; }
+    public C getCoordinate() { return this.coordinate; }
 
     @Override
-    public int compareTo(DoubleVertex<T> o) {
+    public int compareTo(DoubleVertex<C> o) {
         var diff = this.cost - o.cost;
         if (Math.abs(diff) < 1e-6) return 0;
         if (diff < 0) return -1;

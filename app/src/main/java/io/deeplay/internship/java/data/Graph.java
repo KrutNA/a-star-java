@@ -3,17 +3,17 @@ package io.deeplay.internship.java.data;
 import java.util.List;
 import java.util.Objects;
 
-public class Graph<T extends Coordinate<T>, V extends Vertex<T, V>> {
-    T size;
+public class Graph<C extends Coordinate<C>, V extends Vertex<C, V>> {
+    C size;
     List<V> vertices;
 
-    public Graph(List<V> vertices, T size) {
+    public Graph(List<V> vertices, C size) {
         this.vertices = vertices;
         this.size = size;
     }
-    public T getSize() { return size; }
+    public C getSize() { return size; }
 
-    public V get(T coordinate) {
+    public V get(C coordinate) {
         return vertices.get(coordinate.flattenForSize(size));
     }
 

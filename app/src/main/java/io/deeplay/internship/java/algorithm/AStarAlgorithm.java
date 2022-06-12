@@ -7,13 +7,13 @@ import io.deeplay.internship.java.data.Vertex;
 import java.util.*;
 
 public class AStarAlgorithm implements Algorithm {
-    public <T extends Coordinate<T>, V extends Vertex<T, V>> List<T> solve(
-            Graph<T, V> graph,
-            T from,
-            T to
+    public <C extends Coordinate<C>, V extends Vertex<C, V>> List<C> solve(
+            Graph<C, V> graph,
+            C from,
+            C to
     ) {
-        var open = new ArrayList<IndexCost<T>>();
-        var closed = new ArrayList<IndexCost<T>>();
+        var open = new ArrayList<IndexCost<C>>();
+        var closed = new ArrayList<IndexCost<C>>();
         var current = new IndexCost<>(graph.get(from).getCoordinate(), 0.0, null);
 
         while (!current.coordinate.equals(to)) {
@@ -25,7 +25,7 @@ public class AStarAlgorithm implements Algorithm {
             open.remove(0);
         }
 
-        var path = new ArrayDeque<T>();
+        var path = new ArrayDeque<C>();
         while (current.parent != null) {
             path.addFirst(current.coordinate);
             current = current.parent;
@@ -34,16 +34,16 @@ public class AStarAlgorithm implements Algorithm {
         return new ArrayList<>(path);
     }
 
-    private <T extends Coordinate<T>, V extends Vertex<T, V>> void addAllAdjacent(
-            Graph<T, V> graph,
-            List<IndexCost<T>> open,
-            List<IndexCost<T>> closed,
-            IndexCost<T> current
+    private <C extends Coordinate<C>, V extends Vertex<C, V>> void addAllAdjacent(
+            Graph<C, V> graph,
+            List<IndexCost<C>> open,
+            List<IndexCost<C>> closed,
+            IndexCost<C> current
     ) {
         for (var adj : current.coordinate.getAdjacent(graph.getSize())) {
             if (closedContainsAdjacent(closed, adj, graph.getSize())) {
                 var vertex = graph.getVertices().get(adj);
-                open.add(new IndexCost<T>(
+                open.add(new IndexCost<C>(
                         vertex.getCoordinate(),
                         current.cost + vertex.getCost().doubleValue(),
                         current)
@@ -52,14 +52,14 @@ public class AStarAlgorithm implements Algorithm {
         }
     }
 
-    private <T extends Coordinate<T>> boolean closedContainsAdjacent(List<IndexCost<T>> closed, Integer adj, T size) {
+    private <C extends Coordinate<C>> boolean closedContainsAdjacent(List<IndexCost<C>> closed, Integer adj, C size) {
         return closed.stream().noneMatch(c -> c.coordinate().flattenForSize(size) == adj);
     }
 
-    private record IndexCost<T>(
-            T coordinate,
+    private record IndexCost<C>(
+            C coordinate,
             double cost,
-            IndexCost<T> parent
+            IndexCost<C> parent
     ) {
     }
 }

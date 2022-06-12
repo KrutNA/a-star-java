@@ -1,7 +1,7 @@
 package io.deeplay.internship.java.data;
 
-public interface Vertex<T extends Coordinate<T>, C extends Vertex<T, C>> extends Comparable<C> {
-    T getCoordinate();
+public interface Vertex<C extends Coordinate<C>, V extends Vertex<C, V>> extends Comparable<V> {
+    C getCoordinate();
 
     Number getCost();
 }
